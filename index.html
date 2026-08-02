@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Abdullatif Ghajar — Software Engineer</title>
+    <meta name="description"
+          content="Software engineer at JetBrains, Berlin. Building B2B AI governance tooling for developers.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ---- THEME: change these values to restyle the whole page ---- */
+        :root {
+            --bg: #14181f;
+            --surface: #1a1f29;
+            --line: #2a3140;
+            --text: #e6e9ef;
+            --muted: #98a2b3;
+            --dim: #8089a0;
+            --accent: #5fd68a;
+            --page: 880px;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            width: var(--page);
+            max-width: 100%;
+            margin: 0 auto;
+            padding: clamp(40px, 7vw, 72px) clamp(20px, 5vw, 56px) 72px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        /* ponytail: chrome-like links (buttons, cards, social pills) stay undecorated */
+        .btn,
+        .card,
+        .socials a {
+            text-decoration: none;
+        }
+
+        p {
+            margin: 0;
+            text-wrap: pretty;
+        }
+
+        h1, h2 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* ---- Sections ---- */
+        section {
+            margin-top: 52px;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 18px;
+        }
+
+        .section-head .eyebrow {
+            margin-bottom: 0;
+        }
+
+        .more {
+            font-size: 12px;
+            color: var(--dim);
+        }
+
+        /* ---- Header ---- */
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 22px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        h1 {
+            font-size: clamp(30px, 5.4vw, 46px);
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+        }
+
+        .meta {
+            margin-top: 10px;
+            font-size: 15px;
+            color: var(--dim);
+        }
+
+        .lede {
+            margin-top: 22px;
+            max-width: 620px;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #c6cddb;
+        }
+
+        /* ---- Buttons ---- */
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 26px;
+        }
+
+        .btn {
+            padding: 9px 16px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: none;
+            color: #c6cddb;
+            font: inherit;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #0f1218;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            color: #0f1218;
+            opacity: 0.9;
+        }
+
+        /* ---- Body copy ---- */
+        .prose {
+            max-width: 660px;
+            font-size: 14px;
+            line-height: 1.85;
+            color: var(--muted);
+        }
+
+        .prose + .prose {
+            margin-top: 14px;
+        }
+
+        /* ---- Stack ---- */
+        .stack {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 14px 20px;
+            align-items: start;
+        }
+
+        .stack dt {
+            font-size: 12px;
+            color: var(--dim);
+            padding-top: 5px;
+        }
+
+        .stack dd {
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .chip {
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 12px;
+            color: #c6cddb;
+        }
+
+        /* ---- Projects ---- */
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .card {
+            display: block;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            border-radius: 6px;
+            padding: 18px;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-name {
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .card-lang {
+            color: var(--dim);
+            font-size: 12px;
+        }
+
+        .card p {
+            margin: 10px 0 14px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .card-foot {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            color: var(--dim);
+        }
+
+        /* ---- Experience / education rows ---- */
+        .role {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 20px;
+            padding: 16px 0;
+            border-top: 1px solid #232936;
+        }
+
+        .role:last-child {
+            border-bottom: 1px solid #232936;
+        }
+
+        .role .when {
+            font-size: 12px;
+            color: var(--dim);
+        }
+
+        .role .what {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .role .where {
+            font-size: 13px;
+            color: var(--dim);
+            margin-top: 2px;
+        }
+
+        .role p {
+            margin-top: 8px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--muted);
+        }
+
+        /* ---- Contact ---- */
+        .contact {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .contact h2 {
+            font-size: 20px;
+        }
+
+        .contact .meta {
+            margin-top: 6px;
+            font-size: 13px;
+            color: var(--dim);
+        }
+
+        .socials {
+            display: flex;
+            gap: 8px;
+        }
+
+        .socials a {
+            padding: 8px 14px;
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            font-size: 12px;
+            color: #c6cddb;
+        }
+
+        .socials a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .stack, .role {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<main class="page">
+
+    <!-- ============ HEADER ============ -->
+    <header>
+        <div class="status">
+            <span class="dot"></span>
+            <span>Software Engineer at JetBrains</span>
+        </div>
+        <h1>Abdullatif Ghajar</h1>
+        <div class="meta">@AbdullatifGhajar · Berlin, Germany</div>
+        <p class="lede">I build AI development and governance tooling for B2B and millions of users.</p>
+        <div class="actions">
+            <a class="btn btn-primary" href="mailto:abdullatif.ghajar@gmail.com">Email me →</a>
+            <a class="btn" href="https://www.linkedin.com/in/abdu-gh-761321211/">LinkedIn</a>
+            <a class="btn" href="CV_2026.pdf">Résumé</a>
+        </div>
+    </header>
+
+    <!-- ============ ABOUT ============ -->
+    <section>
+        <div class="eyebrow">## ABOUT</div>
+        <p class="prose">Software engineer at JetBrains, working on AI governance for enterprises: IDE provisioning,
+            agents & MCP management and analytics. I like owning a system end to
+            end: design, backend, frontend, deployment, and monitoring.</p>
+        <p class="prose">M.Sc. in IT-Systems Engineering from Hasso Plattner Institute (4.0/4.0), with research in
+            human-computer interaction and LLM-assisted programming.</p>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section>
+        <div class="eyebrow">## STACK</div>
+        <dl class="stack">
+            <dt>Languages</dt>
+            <dd>
+                <span class="chip">Kotlin/Java</span>
+                <span class="chip">TypeScript</span>
+                <span class="chip">Python</span>
+                <span class="chip">SQL</span>
+                <span class="chip">C++</span>
+            </dd>
+            <dt>Frameworks</dt>
+            <dd>
+                <span class="chip">Spring</span>
+                <span class="chip">Django</span>
+                <span class="chip">React</span>
+                <span class="chip">PyTorch</span>
+            </dd>
+            <dt>Infrastructure</dt>
+            <dd>
+                <span class="chip">Docker</span>
+                <span class="chip">Kubernetes</span>
+                <span class="chip">Prometheus</span>
+                <span class="chip">Grafana</span>
+            </dd>
+        </dl>
+    </section>
+
+    <!-- ============ PROJECTS — descriptions are guesses from repo names, please correct ============ -->
+    <section>
+        <div class="section-head">
+            <div class="eyebrow">## PROJECTS</div>
+            <a class="more" href="https://github.com/AbdullatifGhajar?tab=repositories">All repositories →</a>
+        </div>
+        <div class="projects">
+
+            <a class="card" href="https://github.com/AbdullatifGhajar/social_gateway">
+                <div class="card-top">
+                    <span class="card-name">Lotus</span>
+                    <span class="card-lang">Kotlin/Python</span>
+                </div>
+                <p>Android app built for a University of Washington psychology study – deployed to participants and used
+                    for real data collection via a Flask server.</p>
+                <div class="card-foot"><span>Android</span><span>Flask</span><span>Nginx</span></div>
+            </a>
+
+            <a class="card" href="https://github.com/AbdullatifGhajar/MorphsVsZombies">
+                <div class="card-top">
+                    <span class="card-name">MorphsVsZombies</span>
+                    <span class="card-lang">Unity/C#</span>
+                </div>
+                <p>A 3D version of Plants vs. Zombies (tower game) with self-made assets.</p>
+                <div class="card-foot"><span>Game</span><span>Unity</span></div>
+            </a>
+
+            <div class="card">
+                <div class="card-top">
+                    <span class="card-name">DerDasDie</span>
+                    <span class="card-lang">JavaScript</span>
+                </div>
+                <p>Practice Chrome extension for German noun genders, published on the
+                    <a href="https://chromewebstore.google.com/detail/der-das-die/nknblohgodhkheiandjfadkihbaofbgn">Chrome
+                        Web Store</a></p>
+                <div class="card-foot"><span>Web</span><span>Chrome Extension</span></div>
+            </div>
+
+            <div class="card">
+                <div class="card-top">
+                    <span class="card-name">ReFiQ</span>
+                    <span class="card-lang">Kotlin</span>
+                </div>
+                <p>PyCharm implementation of exploratory programming with result-first AI code generation. Results and
+                    insights are published at <a href="https://dl.acm.org/doi/10.1145/3772318.3791731">ACM CHI 2026</a>
+                </p>
+                <div class="card-foot"><span>Add a tag</span><span>MIT</span></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section>
+        <div class="eyebrow">## EXPERIENCE</div>
+
+        <div class="role">
+            <div class="when">Nov 2024 — now</div>
+            <div>
+                <div class="what">Software Engineer</div>
+                <div class="where">JetBrains · Berlin</div>
+                <p>B2B AI governance in JetBrains Central: IDE provisioning, ACP and MCP management, provider connection
+                    testing. Co-maintain IDE Services for 18 enterprise customers, and deployed the system from scratch
+                    — Kubernetes namespace, metrics, CI/CD.</p>
+            </div>
+        </div>
+
+        <div class="role">
+            <div class="when">Aug — Sep 2024</div>
+            <div>
+                <div class="what">Visiting Associate</div>
+                <div class="where">BCG Platinion · Frankfurt</div>
+                <p>Ran workshops at DB InfraGO for new planning software across the German rail network. Gathered 600+
+                    requirements into 60+ capabilities in a Scrum-of-Scrums setup.</p>
+            </div>
+        </div>
+
+        <div class="role">
+            <div class="when">Apr — Oct 2023</div>
+            <div>
+                <div class="what">Software Engineering Intern</div>
+                <div class="where">JetBrains · Berlin</div>
+                <p>Built a collaboration plugin for IntelliJ IDEA end to end — design, frontend, backend, QA — with
+                    Telegram, GitHub, and Slack integrations.</p>
+            </div>
+        </div>
+
+        <div class="role">
+            <div class="when">Nov 2021 — Nov 2022</div>
+            <div>
+                <div class="what">Android Developer</div>
+                <div class="where">University of Washington · Remote</div>
+                <p>Designed, built, and published two Android apps for a published psychology study, plus the full IT
+                    environment for running the experiments.</p>
+            </div>
+        </div>
+
+        <div class="role">
+            <div class="when">2020 — 2022</div>
+            <div>
+                <div class="what">Teaching Assistant · Full-Stack Developer</div>
+                <div class="where">Hasso Plattner Institute · Potsdam</div>
+                <p>Taught Linear Algebra and Internet Security, and built CTF environments in Docker/Kubernetes.
+                    Earlier, an educational web app used by 100+ students for 1.5 years.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section>
+        <div class="eyebrow">## EDUCATION</div>
+
+        <div class="role">
+            <div class="when">2022 — 2025</div>
+            <div>
+                <div class="what">M.Sc. IT-Systems Engineering · 4.0/4.0</div>
+                <div class="where">Hasso Plattner Institute · Potsdam</div>
+                <p>Thesis: Exploratory Programming with Result-First AI Code Generation.</p>
+            </div>
+        </div>
+
+        <div class="role">
+            <div class="when">2019 — 2022</div>
+            <div>
+                <div class="what">B.Sc. IT-Systems Engineering · 3.9/4.0</div>
+                <div class="where">Hasso Plattner Institute · Potsdam</div>
+                <p>Thesis: Active Learning for Digitizing Handwritten Historical Patient Records.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    var copyBtn = document.getElementById('copy-email');
+    copyBtn.addEventListener('click', function () {
+        navigator.clipboard.writeText(copyBtn.dataset.email);
+        copyBtn.textContent = 'Copied \u2713';
+        setTimeout(function () {
+            copyBtn.textContent = 'Copy email';
+        }, 1600);
+    });
+</script>
+
+</body>
+</html>
