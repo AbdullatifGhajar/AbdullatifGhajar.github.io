@@ -6,52 +6,52 @@
     <title>Abdullatif Ghajar — Software Engineer</title>
     <meta name="description"
           content="Software engineer at JetBrains, Berlin. Building B2B AI governance tooling for developers.">
+    <meta name="theme-color" content="#0a0d14">
+    <meta property="og:title" content="Abdullatif Ghajar — Software Engineer">
+    <meta property="og:description" content="Software engineer at JetBrains, Berlin. Building B2B AI governance tooling for developers.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230a0d14'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='700' font-size='28' fill='%235fd68a'>AG</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* ---- THEME: change these values to restyle the whole page ---- */
         :root {
-            --bg: #14181f;
-            --surface: #1a1f29;
-            --line: #2a3140;
-            --text: #e6e9ef;
-            --muted: #98a2b3;
-            --dim: #8089a0;
+            --bg: #0a0d14;
+            --text: #eef1f6;
+            --muted: #a3acbd;
+            --dim: #7d879b;
             --accent: #5fd68a;
-            --page: 880px;
+            --accent-2: #5ab8ff;
+            --accent-3: #a78bfa;
+            --line: rgba(255, 255, 255, 0.10);
+            --page: 1040px;
+            --radius: 22px;
+            --mono: 'JetBrains Mono', ui-monospace, monospace;
+            color-scheme: dark;
         }
-
 
         * {
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'JetBrains Mono', ui-monospace, monospace;
-            -webkit-font-smoothing: antialiased;
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 96px;
         }
 
-        .page {
-            width: var(--page);
-            max-width: 100%;
-            margin: 0 auto;
-            padding: clamp(40px, 7vw, 72px) clamp(20px, 5vw, 56px) 72px;
+        body {
+            position: relative;
+            margin: 0;
+            overflow-x: hidden;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
             color: inherit;
-            text-decoration: underline;
-        }
-
-        /* ponytail: chrome-like links (buttons, cards, social pills) stay undecorated */
-        .btn,
-        .card,
-        .socials a {
-            text-decoration: none;
         }
 
         p {
@@ -59,47 +59,230 @@
             text-wrap: pretty;
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             margin: 0;
-            font-weight: 700;
         }
 
-        /* ---- Sections ---- */
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        /* ---- Backdrop: what the glass refracts. Plain gradients only, html2canvas can't render filters ---- */
+        .backdrop {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .backdrop .grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+            background-size: 56px 56px;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .blob-1 {
+            width: 760px;
+            height: 760px;
+            top: -260px;
+            left: -220px;
+            background: radial-gradient(circle, rgba(95, 214, 138, 0.42), rgba(95, 214, 138, 0) 68%);
+        }
+
+        .blob-2 {
+            width: 820px;
+            height: 820px;
+            top: -120px;
+            right: -300px;
+            background: radial-gradient(circle, rgba(90, 184, 255, 0.36), rgba(90, 184, 255, 0) 68%);
+        }
+
+        .blob-3 {
+            width: 900px;
+            height: 900px;
+            top: 1100px;
+            left: -360px;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.32), rgba(167, 139, 250, 0) 68%);
+        }
+
+        .blob-4 {
+            width: 760px;
+            height: 760px;
+            top: 1150px;
+            right: -160px;
+            background: radial-gradient(circle, rgba(95, 214, 138, 0.30), rgba(95, 214, 138, 0) 68%);
+        }
+
+        .blob-5 {
+            width: 900px;
+            height: 900px;
+            bottom: -420px;
+            left: 50%;
+            margin-left: -450px;
+            background: radial-gradient(circle, rgba(90, 184, 255, 0.30), rgba(90, 184, 255, 0) 68%);
+        }
+
+        /* ---- Glass surfaces. CSS frost is the fallback; liquid-glass.js swaps in WebGL refraction ---- */
+        [data-glass] {
+            position: relative;
+            isolation: isolate;
+            border-radius: var(--radius);
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03));
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+            0 20px 50px rgba(0, 0, 0, 0.35);
+            transition: box-shadow 0.3s;
+        }
+
+        .lg-on [data-glass] {
+            background: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        .lg-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .lg-on .lg-canvas {
+            opacity: 1;
+        }
+
+        /* ---- Nav ---- */
+        .nav {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            padding: 6px;
+            border-radius: 999px;
+        }
+
+        .nav a {
+            padding: 9px 15px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #dfe4ec;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .nav .logo {
+            font-family: var(--mono);
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        .nav .nav-cta {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .nav .nav-cta:hover {
+            background: #fff;
+        }
+
+        /* ---- Layout ---- */
+        .page {
+            width: var(--page);
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 clamp(16px, 5vw, 40px);
+        }
+
         section {
-            margin-top: 52px;
+            padding-top: clamp(72px, 10vw, 112px);
         }
 
         .eyebrow {
+            font-family: var(--mono);
             font-size: 12px;
             letter-spacing: 0.08em;
             color: var(--accent);
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            margin-bottom: 32px;
         }
 
         .section-head {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 18px;
+            align-items: flex-end;
+            gap: 16px;
+            margin-bottom: 32px;
         }
 
-        .section-head .eyebrow {
+        .section-head .section-title {
             margin-bottom: 0;
         }
 
         .more {
-            font-size: 12px;
-            color: var(--dim);
+            font-size: 14px;
+            color: var(--muted);
+            text-decoration: none;
+            white-space: nowrap;
         }
 
-        /* ---- Header ---- */
+        .more:hover {
+            color: var(--text);
+        }
+
+        /* ---- Hero ---- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.35fr 1fr;
+            gap: 56px;
+            align-items: center;
+            min-height: 100vh;
+            min-height: 100svh;
+            padding: 120px 0 64px;
+        }
+
         .status {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
+            padding: 7px 14px 7px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(95, 214, 138, 0.35);
+            background: rgba(95, 214, 138, 0.10);
+            font-family: var(--mono);
             font-size: 12px;
             color: var(--accent);
-            margin-bottom: 22px;
+            margin-bottom: 28px;
         }
 
         .dot {
@@ -107,407 +290,752 @@
             height: 7px;
             border-radius: 50%;
             background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(95, 214, 138, 0.2);
         }
 
         h1 {
-            font-size: clamp(30px, 5.4vw, 46px);
-            letter-spacing: -0.02em;
-            line-height: 1.05;
+            font-size: clamp(44px, 7.5vw, 84px);
+            font-weight: 700;
+            letter-spacing: -0.045em;
+            line-height: 0.98;
         }
 
-        .meta {
-            margin-top: 10px;
-            font-size: 15px;
-            color: var(--dim);
+        h1 span {
+            background: linear-gradient(100deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Set on the copy liquid-glass.js snapshots: html2canvas paints clipped gradients as solid boxes */
+        .lg-snapshot h1 span {
+            background: none;
+            color: var(--accent-2);
+        }
+
+        /* ...and inset shadows as thick grey frames */
+        .lg-snapshot [data-glass] {
+            box-shadow: none;
         }
 
         .lede {
-            margin-top: 22px;
-            max-width: 620px;
-            font-size: 17px;
-            line-height: 1.6;
-            color: #c6cddb;
-        }
-
-        /* ---- Buttons ---- */
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
             margin-top: 26px;
+            max-width: 540px;
+            font-size: clamp(17px, 2vw, 20px);
+            line-height: 1.6;
+            color: var(--muted);
         }
 
-        .btn {
-            padding: 9px 16px;
-            border: 1px solid var(--line);
-            border-radius: 5px;
-            background: none;
-            color: #c6cddb;
-            font: inherit;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #0f1218;
+        .lede strong {
+            color: var(--text);
             font-weight: 500;
         }
 
-        .btn-primary:hover {
-            color: #0f1218;
-            opacity: 0.9;
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 36px;
         }
 
-        /* ---- Body copy ---- */
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 22px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .btn:hover {
+            border-color: rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Glass buttons get their rim from the glass shadow, like the icon circles */
+        .btn[data-glass] {
+            border-color: transparent;
+        }
+
+        .btn-primary {
+            border-color: transparent;
+            background: var(--accent);
+            color: #07130c;
+        }
+
+        .icon-btn {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: var(--text);
+            transition: color 0.2s, box-shadow 0.3s;
+        }
+
+        .icon-btn:hover {
+            color: var(--accent);
+        }
+
+        /* ---- Hover: the whole surface catches light and swells a little, liquid-glass style ---- */
+        :is(.btn, .chip, .card, .icon-btn, .shuffle, .edu-card, .facts, .contact) {
+            --lift: 1.04;
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, background-color 0.18s, border-color 0.18s, color 0.18s;
+        }
+
+        /* Large surfaces swell less, or they'd crowd their neighbours */
+        .card, .edu-card, .facts {
+            --lift: 1.015;
+        }
+
+        .contact {
+            --lift: 1.006;
+        }
+
+        :is(.btn, .chip, .card, .icon-btn, .shuffle, .edu-card, .facts, .contact)::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03) 55%, rgba(255, 255, 255, 0.08));
+            opacity: 0;
+            transition: opacity 0.18s ease-out;
+        }
+
+        :is(.btn, .chip, .card, .icon-btn, .shuffle, .edu-card, .facts, .contact):hover {
+            transform: scale(var(--lift));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+            0 16px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        :is(.btn, .chip, .card, .icon-btn, .shuffle, .edu-card, .facts, .contact):hover::after {
+            opacity: 1;
+        }
+
+        /* Only useful once the WebGL glass is running */
+        .shuffle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 10;
+            display: none;
+            width: 56px;
+            height: 56px;
+            border: 0;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .lg-on .shuffle {
+            display: grid;
+            place-items: center;
+        }
+
+        .btn-primary:hover {
+            background: #7be3a1;
+            border-color: transparent;
+        }
+
+        .facts {
+            padding: 28px;
+            display: grid;
+            gap: 22px;
+        }
+
+        .facts-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .avatar {
+            display: block;
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .facts-head .name {
+            font-weight: 600;
+        }
+
+        .facts-head .handle {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--dim);
+            margin-top: 3px;
+        }
+
+        .fact {
+            display: grid;
+            grid-template-columns: 86px 1fr;
+            gap: 12px;
+            align-items: baseline;
+        }
+
+        .fact .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .fact .chip {
+            padding: 3px 8px;
+            font-size: 12px;
+        }
+
+        .fact .k {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--dim);
+        }
+
+        .fact .v {
+            font-size: 15px;
+            color: #dfe4ec;
+            line-height: 1.45;
+        }
+
+        /* ---- About ---- */
+        .about {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 56px;
+        }
+
         .prose {
-            max-width: 660px;
-            font-size: 14px;
-            line-height: 1.85;
+            font-size: 17px;
+            line-height: 1.75;
             color: var(--muted);
         }
 
         .prose + .prose {
-            margin-top: 14px;
+            margin-top: 18px;
         }
 
-        /* ---- Stack ---- */
+        .prose strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
         .stack {
+            margin: 0;
             display: grid;
-            grid-template-columns: 130px 1fr;
-            gap: 14px 20px;
-            align-items: start;
+            gap: 22px;
         }
 
         .stack dt {
+            font-family: var(--mono);
             font-size: 12px;
             color: var(--dim);
-            padding-top: 5px;
+            margin-bottom: 10px;
         }
 
         .stack dd {
             margin: 0;
             display: flex;
             flex-wrap: wrap;
-            gap: 7px;
+            gap: 8px;
         }
 
         .chip {
+            position: relative;
             border: 1px solid var(--line);
-            border-radius: 4px;
-            padding: 4px 10px;
-            font-size: 12px;
-            color: #c6cddb;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 999px;
+            padding: 6px 13px;
+            font-size: 13px;
+            color: #dfe4ec;
         }
 
         /* ---- Projects ---- */
         .projects {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 20px;
         }
 
         .card {
-            display: block;
-            border: 1px solid var(--line);
-            background: var(--surface);
-            border-radius: 6px;
-            padding: 18px;
-        }
-
-        .card:hover {
-            border-color: var(--accent);
+            display: flex;
+            flex-direction: column;
+            padding: 26px;
+            text-decoration: none;
         }
 
         .card-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
         .card-name {
-            color: var(--accent);
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
         }
 
         .card-lang {
-            color: var(--dim);
+            font-family: var(--mono);
             font-size: 12px;
+            color: var(--dim);
         }
 
         .card p {
-            margin: 10px 0 14px;
+            flex: 1;
+            margin: 12px 0 22px;
             color: var(--muted);
-            font-size: 13px;
+            font-size: 15px;
             line-height: 1.65;
+        }
+
+        .card p a {
+            color: var(--text);
+            text-decoration-color: rgba(255, 255, 255, 0.35);
+            text-underline-offset: 3px;
         }
 
         .card-foot {
             display: flex;
-            gap: 12px;
-            font-size: 11px;
-            color: var(--dim);
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        /* ---- Experience / education rows ---- */
+        .card-foot span {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--muted);
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .arrow {
+            color: var(--dim);
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        a.card:hover .arrow {
+            color: var(--accent);
+            transform: translate(2px, -2px);
+        }
+
+        a.card:hover .card-name {
+            color: var(--accent);
+        }
+
+        /* ---- Experience / education ---- */
+        .timeline {
+            border-left: 1px solid var(--line);
+            margin-left: 6px;
+        }
+
         .role {
+            position: relative;
             display: grid;
-            grid-template-columns: 130px 1fr;
-            gap: 20px;
-            padding: 16px 0;
-            border-top: 1px solid #232936;
+            grid-template-columns: 170px 1fr;
+            gap: 24px;
+            padding: 0 0 40px 32px;
         }
 
         .role:last-child {
-            border-bottom: 1px solid #232936;
+            padding-bottom: 0;
+        }
+
+        .role::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--dim);
+        }
+
+        .role.current::before {
+            border-color: var(--accent);
+            background: var(--accent);
+            box-shadow: 0 0 0 5px rgba(95, 214, 138, 0.18);
         }
 
         .role .when {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--dim);
+            padding-top: 3px;
+        }
+
+        .role .what {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .role .where {
+            font-size: 15px;
+            color: var(--accent);
+            margin-top: 3px;
+        }
+
+        .role p {
+            margin-top: 10px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .edu {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .edu-card {
+            position: relative;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .edu-card .when {
+            font-family: var(--mono);
             font-size: 12px;
             color: var(--dim);
         }
 
-        .role .what {
-            font-size: 14px;
-            font-weight: 500;
+        .edu-card .what {
+            margin-top: 12px;
+            font-size: 18px;
+            font-weight: 600;
         }
 
-        .role .where {
-            font-size: 13px;
-            color: var(--dim);
-            margin-top: 2px;
+        .edu-card .grade {
+            display: inline-block;
+            margin-top: 10px;
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--accent);
         }
 
-        .role p {
-            margin-top: 8px;
-            font-size: 13px;
+        .edu-card p {
+            margin-top: 14px;
+            font-size: 15px;
             line-height: 1.65;
             color: var(--muted);
         }
 
         /* ---- Contact ---- */
         .contact {
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 24px;
-            flex-wrap: wrap;
+            padding: clamp(32px, 6vw, 64px);
+            text-align: center;
+            border-radius: 32px;
         }
 
         .contact h2 {
-            font-size: 20px;
+            font-size: clamp(30px, 5vw, 48px);
+            font-weight: 700;
+            letter-spacing: -0.035em;
         }
 
-        .contact .meta {
-            margin-top: 6px;
-            font-size: 13px;
+        .contact p {
+            margin: 16px auto 0;
+            max-width: 480px;
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .contact .actions {
+            justify-content: center;
+        }
+
+        footer {
+            padding: 56px 0 40px;
+            text-align: center;
+            font-family: var(--mono);
+            font-size: 12px;
             color: var(--dim);
         }
 
-        .socials {
-            display: flex;
-            gap: 8px;
-        }
+        @media (max-width: 860px) {
+            .hero, .about {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
 
-        .socials a {
-            padding: 8px 14px;
-            border: 1px solid var(--line);
-            border-radius: 5px;
-            font-size: 12px;
-            color: #c6cddb;
-        }
-
-        .socials a:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+            .hero {
+                min-height: 0;
+                padding-top: 120px;
+            }
         }
 
         @media (max-width: 640px) {
-            .projects {
+            .nav {
+                top: 12px;
+            }
+
+            .nav .hide-sm {
+                display: none;
+            }
+
+            .projects, .edu {
                 grid-template-columns: 1fr;
             }
 
-            .stack, .role {
+            .role {
                 grid-template-columns: 1fr;
-                gap: 8px;
+                gap: 6px;
+                padding-left: 24px;
+            }
+
+            .section-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::after {
+                transition: none !important;
             }
         }
     </style>
 </head>
 <body>
 
-<main class="page">
+<div class="backdrop" aria-hidden="true">
+    <div class="grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+</div>
 
-    <!-- ============ HEADER ============ -->
-    <header>
-        <div class="status">
-            <span class="dot"></span>
-            <span>Software Engineer at JetBrains</span>
+<button class="shuffle" type="button" data-glass="0.12" data-glass-refraction="0.25" data-glass-shuffle aria-label="Shuffle the glass effect"
+        title="Shuffle the glass effect">🎲</button>
+
+<nav class="nav" data-glass="0.12" aria-label="Main">
+    <a class="logo" href="#top">AG</a>
+    <a class="hide-sm" href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a class="nav-cta" href="#contact">Contact</a>
+</nav>
+
+<main class="page" id="top">
+
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+        <div>
+            <div class="status">
+                <span class="dot"></span>
+                <span>Software Engineer @ JetBrains</span>
+            </div>
+            <h1>Abdullatif<br><span>Ghajar</span></h1>
+            <p class="lede">I build <strong>AI development and governance tooling</strong> for enterprises and
+                millions of developers.</p>
+            <div class="actions">
+                <a class="btn btn-primary" href="mailto:abdullatif.ghajar@gmail.com">Email me →</a>
+                <a class="btn" data-glass="0.1" data-glass-refraction="0.1" href="CV_2026.pdf">Résumé</a>
+                <a class="icon-btn" data-glass="0.1" data-glass-refraction="0.25" href="https://github.com/AbdullatifGhajar" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+                <a class="icon-btn" data-glass="0.1" data-glass-refraction="0.25" href="https://www.linkedin.com/in/abdu-gh-761321211/" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><circle cx="5" cy="4.8" r="2.3"/><rect x="3" y="9" width="4" height="12"/><path d="M10 9h3.8v1.7c.6-1 1.9-2 3.9-2 3.6 0 4.3 2.3 4.3 5.4V21h-4v-6c0-1.4 0-3.3-2-3.3s-2.3 1.6-2.3 3.2V21H10z"/></svg></a>
+            </div>
         </div>
-        <h1>Abdullatif Ghajar</h1>
-        <div class="meta">@AbdullatifGhajar · Berlin, Germany</div>
-        <p class="lede">I build AI development and governance tooling for B2B and millions of users.</p>
-        <div class="actions">
-            <a class="btn btn-primary" href="mailto:abdullatif.ghajar@gmail.com">Email me →</a>
-            <a class="btn" href="https://www.linkedin.com/in/abdu-gh-761321211/">LinkedIn</a>
-            <a class="btn" href="CV_2026.pdf">Résumé</a>
-        </div>
+
+        <aside class="facts" data-glass="0.08" aria-label="At a glance">
+            <div class="facts-head">
+                <img class="avatar" src="avatar.jpg" alt="Photo of Abdullatif Ghajar" width="64" height="64">
+                <div>
+                    <div class="name">Abdullatif Ghajar</div>
+                    <div class="handle">@AbdullatifGhajar</div>
+                </div>
+            </div>
+            <div class="fact"><span class="k">Based in</span><span class="v">Berlin, Germany</span></div>
+            <div class="fact"><span class="k">Working on</span><span class="v">AI Governance @ JetBrains</span></div>
+            <div class="fact"><span class="k">Core stack</span><span class="v chips"><span class="chip">Kotlin/Java</span><span class="chip">TypeScript</span><span class="chip">Python</span></span></div>
+            <div class="fact"><span class="k">Studied</span><span class="v">IT-Systems Engineering @ HPI</span></div>
+        </aside>
     </header>
 
     <!-- ============ ABOUT ============ -->
-    <section>
+    <section id="about">
         <div class="eyebrow">## ABOUT</div>
-        <p class="prose">Software engineer at JetBrains, working on AI governance for enterprises: IDE provisioning,
-            agents & MCP management and analytics. I like owning a system end to
-            end: design, backend, frontend, deployment, and monitoring.</p>
-        <p class="prose">M.Sc. in IT-Systems Engineering from Hasso Plattner Institute (4.0/4.0), with research in
-            human-computer interaction and LLM-assisted programming.</p>
+        <h2 class="section-title">End-to-end ownership</h2>
+        <div class="about">
+            <div>
+                <p class="prose">Software engineer at JetBrains, working on <strong>AI governance for
+                    enterprises</strong>: IDE provisioning, agents &amp; MCP management and analytics. I like owning a
+                    system end to end: design, backend, frontend, deployment, and monitoring.</p>
+                <p class="prose">M.Sc. in IT-Systems Engineering from Hasso Plattner Institute (4.0/4.0), with research
+                    in <strong>human-computer interaction</strong> and <strong>LLM-assisted programming</strong>.</p>
+            </div>
+            <dl class="stack">
+                <div>
+                    <dt>Languages</dt>
+                    <dd>
+                        <span class="chip">Kotlin/Java</span>
+                        <span class="chip">TypeScript</span>
+                        <span class="chip">Python</span>
+                        <span class="chip">SQL</span>
+                        <span class="chip">C++</span>
+                    </dd>
+                </div>
+                <div>
+                    <dt>Frameworks</dt>
+                    <dd>
+                        <span class="chip">Spring</span>
+                        <span class="chip">Django</span>
+                        <span class="chip">React</span>
+                        <span class="chip">PyTorch</span>
+                    </dd>
+                </div>
+                <div>
+                    <dt>Infrastructure</dt>
+                    <dd>
+                        <span class="chip">Docker</span>
+                        <span class="chip">Kubernetes</span>
+                        <span class="chip">Prometheus</span>
+                        <span class="chip">Grafana</span>
+                    </dd>
+                </div>
+            </dl>
+        </div>
     </section>
 
-    <!-- ============ STACK ============ -->
-    <section>
-        <div class="eyebrow">## STACK</div>
-        <dl class="stack">
-            <dt>Languages</dt>
-            <dd>
-                <span class="chip">Kotlin/Java</span>
-                <span class="chip">TypeScript</span>
-                <span class="chip">Python</span>
-                <span class="chip">SQL</span>
-                <span class="chip">C++</span>
-            </dd>
-            <dt>Frameworks</dt>
-            <dd>
-                <span class="chip">Spring</span>
-                <span class="chip">Django</span>
-                <span class="chip">React</span>
-                <span class="chip">PyTorch</span>
-            </dd>
-            <dt>Infrastructure</dt>
-            <dd>
-                <span class="chip">Docker</span>
-                <span class="chip">Kubernetes</span>
-                <span class="chip">Prometheus</span>
-                <span class="chip">Grafana</span>
-            </dd>
-        </dl>
-    </section>
-
-    <!-- ============ PROJECTS — descriptions are guesses from repo names, please correct ============ -->
-    <section>
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects">
         <div class="section-head">
-            <div class="eyebrow">## PROJECTS</div>
+            <div>
+                <div class="eyebrow">## PROJECTS</div>
+                <h2 class="section-title">Selected work</h2>
+            </div>
             <a class="more" href="https://github.com/AbdullatifGhajar?tab=repositories">All repositories →</a>
         </div>
         <div class="projects">
 
-            <a class="card" href="https://github.com/AbdullatifGhajar/social_gateway">
+            <article class="card" data-glass="0.06" data-glass-refraction="0.35">
                 <div class="card-top">
-                    <span class="card-name">Lotus</span>
-                    <span class="card-lang">Kotlin/Python</span>
+                    <h3 class="card-name">ReFiQ</h3>
+                    <span class="card-lang">Kotlin</span>
+                </div>
+                <p>PyCharm implementation of exploratory programming with result-first AI code generation. Results and
+                    insights are published at <a href="https://dl.acm.org/doi/10.1145/3772318.3791731">ACM CHI 2026</a>.</p>
+                <div class="card-foot"><span>AI Tool</span><span>IDE</span><span>User Study</span></div>
+            </article>
+
+            <a class="card" data-glass="0.06" data-glass-refraction="0.35" href="https://github.com/AbdullatifGhajar/social_gateway">
+                <div class="card-top">
+                    <h3 class="card-name">Lotus</h3>
+                    <span class="card-lang">Kotlin/Python <span class="arrow">↗</span></span>
                 </div>
                 <p>Android app built for a University of Washington psychology study – deployed to participants and used
                     for real data collection via a Flask server.</p>
                 <div class="card-foot"><span>Android</span><span>Flask</span><span>Nginx</span></div>
             </a>
 
-            <a class="card" href="https://github.com/AbdullatifGhajar/MorphsVsZombies">
+            <article class="card" data-glass="0.06" data-glass-refraction="0.35">
                 <div class="card-top">
-                    <span class="card-name">MorphsVsZombies</span>
-                    <span class="card-lang">Unity/C#</span>
+                    <h3 class="card-name">DerDasDie</h3>
+                    <span class="card-lang">JavaScript</span>
+                </div>
+                <p>Practice Chrome extension for German noun genders, published on the
+                    <a href="https://chromewebstore.google.com/detail/der-das-die/nknblohgodhkheiandjfadkihbaofbgn">Chrome
+                        Web Store</a>.</p>
+                <div class="card-foot"><span>Web</span><span>Chrome Extension</span></div>
+            </article>
+
+            <a class="card" data-glass="0.06" data-glass-refraction="0.35" href="https://github.com/AbdullatifGhajar/MorphsVsZombies">
+                <div class="card-top">
+                    <h3 class="card-name">MorphsVsZombies</h3>
+                    <span class="card-lang">Unity/C# <span class="arrow">↗</span></span>
                 </div>
                 <p>A 3D version of Plants vs. Zombies (tower game) with self-made assets.</p>
                 <div class="card-foot"><span>Game</span><span>Design</span></div>
             </a>
 
-            <div class="card">
-                <div class="card-top">
-                    <span class="card-name">DerDasDie</span>
-                    <span class="card-lang">JavaScript</span>
-                </div>
-                <p>Practice Chrome extension for German noun genders, published on the
-                    <a href="https://chromewebstore.google.com/detail/der-das-die/nknblohgodhkheiandjfadkihbaofbgn">Chrome
-                        Web Store</a></p>
-                <div class="card-foot"><span>Web</span><span>Chrome Extension</span></div>
-            </div>
-
-            <div class="card">
-                <div class="card-top">
-                    <span class="card-name">ReFiQ</span>
-                    <span class="card-lang">Kotlin</span>
-                </div>
-                <p>PyCharm implementation of exploratory programming with result-first AI code generation. Results and
-                    insights are published at <a href="https://dl.acm.org/doi/10.1145/3772318.3791731">ACM CHI 2026</a>
-                </p>
-                <div class="card-foot"><span>AI Tool</span><span>IDE</span><span>User Study</span></div>
-            </div>
-
         </div>
     </section>
 
     <!-- ============ EXPERIENCE ============ -->
-    <section>
+    <section id="experience">
         <div class="eyebrow">## EXPERIENCE</div>
+        <h2 class="section-title">Where I've worked</h2>
 
-        <div class="role">
-            <div class="when">Nov 2024 — now</div>
-            <div>
-                <div class="what">Software Engineer</div>
-                <div class="where">JetBrains · Berlin</div>
-                <p>B2B AI governance in JetBrains Central: IDE provisioning, ACP and MCP management, provider connection
-                    testing. Co-maintain IDE Services for 18 enterprise customers, and deployed the system from scratch
-                    — Kubernetes namespace, metrics, CI/CD.</p>
+        <div class="timeline">
+            <div class="role current">
+                <div class="when">Nov 2024 — now</div>
+                <div>
+                    <h3 class="what">Software Engineer</h3>
+                    <div class="where">JetBrains · Berlin</div>
+                    <p>B2B AI governance in JetBrains Central: IDE provisioning, ACP and MCP management, provider
+                        connection testing. Co-maintain IDE Services for 18 enterprise customers, and deployed the
+                        system from scratch — Kubernetes namespace, metrics, CI/CD.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="role">
-            <div class="when">Aug — Sep 2024</div>
-            <div>
-                <div class="what">Visiting Associate</div>
-                <div class="where">BCG Platinion · Frankfurt</div>
-                <p>Ran workshops at DB InfraGO for new planning software across the German rail network. Gathered 600+
-                    requirements into 60+ capabilities in a Scrum-of-Scrums setup.</p>
+            <div class="role">
+                <div class="when">Aug — Sep 2024</div>
+                <div>
+                    <h3 class="what">Visiting Associate</h3>
+                    <div class="where">BCG Platinion · Frankfurt</div>
+                    <p>Ran workshops at DB InfraGO for new planning software across the German rail network. Gathered
+                        600+ requirements into 60+ capabilities in a Scrum-of-Scrums setup.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="role">
-            <div class="when">Apr — Oct 2023</div>
-            <div>
-                <div class="what">Software Engineering Intern</div>
-                <div class="where">JetBrains · Berlin</div>
-                <p>Built a collaboration plugin for IntelliJ IDEA end to end — design, frontend, backend, QA — with
-                    Telegram, GitHub, and Slack integrations.</p>
+            <div class="role">
+                <div class="when">Apr — Oct 2023</div>
+                <div>
+                    <h3 class="what">Software Engineering Intern</h3>
+                    <div class="where">JetBrains · Berlin</div>
+                    <p>Built a collaboration plugin for IntelliJ IDEA end to end — design, frontend, backend, QA — with
+                        Telegram, GitHub, and Slack integrations.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="role">
-            <div class="when">Nov 2021 — Nov 2022</div>
-            <div>
-                <div class="what">Android Developer</div>
-                <div class="where">University of Washington · Remote</div>
-                <p>Designed, built, and published two Android apps for a published psychology study, plus the full IT
-                    environment for running the experiments.</p>
+            <div class="role">
+                <div class="when">Nov 2021 — Nov 2022</div>
+                <div>
+                    <h3 class="what">Android Developer</h3>
+                    <div class="where">University of Washington · Remote</div>
+                    <p>Designed, built, and published two Android apps for a published psychology study, plus the full
+                        IT environment for running the experiments.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="role">
-            <div class="when">2020 — 2022</div>
-            <div>
-                <div class="what">Teaching Assistant · Full-Stack Developer</div>
-                <div class="where">Hasso Plattner Institute · Potsdam</div>
-                <p>Taught Linear Algebra and Internet Security, and built CTF environments in Docker/Kubernetes.
-                    Earlier, an educational web app used by 100+ students for 1.5 years.</p>
+            <div class="role">
+                <div class="when">2020 — 2022</div>
+                <div>
+                    <h3 class="what">Teaching Assistant · Full-Stack Developer</h3>
+                    <div class="where">Hasso Plattner Institute · Potsdam</div>
+                    <p>Taught Linear Algebra and Internet Security, and built CTF environments in Docker/Kubernetes.
+                        Earlier, an educational web app used by 100+ students for 1.5 years.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -515,25 +1043,39 @@
     <!-- ============ EDUCATION ============ -->
     <section>
         <div class="eyebrow">## EDUCATION</div>
-
-        <div class="role">
-            <div class="when">2022 — 2025</div>
-            <div>
-                <div class="what">M.Sc. IT-Systems Engineering · 4.0/4.0</div>
-                <div class="where">Hasso Plattner Institute · Potsdam</div>
+        <h2 class="section-title">Hasso Plattner Institute</h2>
+        <div class="edu">
+            <div class="edu-card">
+                <div class="when">2022 — 2025 · Potsdam</div>
+                <h3 class="what">M.Sc. IT-Systems Engineering</h3>
+                <span class="grade">GPA 4.0 / 4.0</span>
                 <p>Thesis: Exploratory Programming with Result-First AI Code Generation.</p>
             </div>
-        </div>
-
-        <div class="role">
-            <div class="when">2019 — 2022</div>
-            <div>
-                <div class="what">B.Sc. IT-Systems Engineering · 3.9/4.0</div>
-                <div class="where">Hasso Plattner Institute · Potsdam</div>
+            <div class="edu-card">
+                <div class="when">2019 — 2022 · Potsdam</div>
+                <h3 class="what">B.Sc. IT-Systems Engineering</h3>
+                <span class="grade">GPA 3.9 / 4.0</span>
                 <p>Thesis: Active Learning for Digitizing Handwritten Historical Patient Records.</p>
             </div>
         </div>
     </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact">
+        <div class="contact" data-glass="0.08">
+            <div class="eyebrow">## CONTACT</div>
+            <h2>Let's build something.</h2>
+            <p>Open to conversations about developer tooling, AI governance, and HCI research.</p>
+            <div class="actions">
+                <a class="btn btn-primary" href="mailto:abdullatif.ghajar@gmail.com">Email me →</a>
+                <button class="btn" data-glass="0.1" data-glass-refraction="0.1" id="copy-email" type="button" data-email="abdullatif.ghajar@gmail.com">Copy email</button>
+                <a class="icon-btn" data-glass="0.1" data-glass-refraction="0.25" href="https://github.com/AbdullatifGhajar" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+                <a class="icon-btn" data-glass="0.1" data-glass-refraction="0.25" href="https://www.linkedin.com/in/abdu-gh-761321211/" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><circle cx="5" cy="4.8" r="2.3"/><rect x="3" y="9" width="4" height="12"/><path d="M10 9h3.8v1.7c.6-1 1.9-2 3.9-2 3.6 0 4.3 2.3 4.3 5.4V21h-4v-6c0-1.4 0-3.3-2-3.3s-2.3 1.6-2.3 3.2V21H10z"/></svg></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>© 2026 Abdullatif Ghajar · Berlin</footer>
 
 </main>
 
@@ -541,12 +1083,14 @@
     var copyBtn = document.getElementById('copy-email');
     copyBtn.addEventListener('click', function () {
         navigator.clipboard.writeText(copyBtn.dataset.email);
-        copyBtn.textContent = 'Copied \u2713';
+        copyBtn.textContent = 'Copied ✓';
         setTimeout(function () {
             copyBtn.textContent = 'Copy email';
         }, 1600);
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
+<script src="liquid-glass.js" defer></script>
 
 </body>
 </html>
