@@ -48,6 +48,8 @@
             color: var(--text);
             font-family: 'Inter', system-ui, sans-serif;
             -webkit-font-smoothing: antialiased;
+            /* Arrow over text too; links and buttons keep their pointer */
+            cursor: default;
         }
 
         a {
@@ -129,6 +131,21 @@
             left: 50%;
             margin-left: -450px;
             background: radial-gradient(circle, rgba(90, 184, 255, 0.30), rgba(90, 184, 255, 0) 68%);
+        }
+
+        /* Stardust cursor: fixed, but at z-index -1 like the backdrop, so all content paints over it */
+        .stardust {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Keep it out of the page liquid-glass.js refracts */
+        .lg-snapshot .stardust {
+            display: none;
         }
 
         /* ---- Glass surfaces. CSS frost is the fallback; liquid-glass.js swaps in WebGL refraction ---- */
@@ -892,6 +909,8 @@
     <a href="#contact">Contact</a>
 </nav>
 
+<canvas class="stardust" aria-hidden="true"></canvas>
+
 <main class="page" id="top">
 
     <!-- ============ HERO ============ -->
@@ -1200,6 +1219,7 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
 <script src="liquid-glass.js" defer></script>
+<script src="stardust.js" defer></script>
 
 </body>
 </html>
