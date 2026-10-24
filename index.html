@@ -201,15 +201,6 @@
             color: var(--accent);
         }
 
-        .nav .nav-cta {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .nav .nav-cta:hover {
-            background: #fff;
-        }
-
         /* ---- Layout ---- */
         .page {
             width: var(--page);
@@ -744,6 +735,59 @@
             color: var(--muted);
         }
 
+        .certs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .cert {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+        }
+
+        .cert-logo {
+            flex: none;
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+        }
+
+        .cert-logo img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+
+        /* Edge-to-edge icons (no padding inside the tile) */
+        .cert-logo img.fill {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+        }
+
+        .cert .what {
+            margin-top: 0;
+            font-size: 16px;
+            line-height: 1.3;
+        }
+
+        .cert .issuer {
+            margin-top: 3px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .cert .when {
+            margin-top: 4px;
+        }
+
         /* ---- Contact ---- */
         .contact {
             padding: clamp(32px, 6vw, 64px);
@@ -844,7 +888,8 @@
     <a class="hide-sm" href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
-    <a class="nav-cta" href="#contact">Contact</a>
+    <a class="hide-sm" href="#certifications">Certificates</a>
+    <a href="#contact">Contact</a>
 </nav>
 
 <main class="page" id="top">
@@ -1056,6 +1101,70 @@
                 <h3 class="what">B.Sc. IT-Systems Engineering</h3>
                 <span class="grade">GPA 3.9 / 4.0</span>
                 <p>Thesis: Active Learning for Digitizing Handwritten Historical Patient Records.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CERTIFICATIONS ============ -->
+    <section id="certifications">
+        <div class="eyebrow">## CERTIFICATIONS</div>
+        <h2 class="section-title">Always learning</h2>
+        <div class="certs">
+            <div class="edu-card cert">
+                <span class="cert-logo"><img src="logos/oreilly.svg" alt=""></span>
+                <div>
+                    <h3 class="what">Advanced Kotlin</h3>
+                    <div class="issuer">O'Reilly</div>
+                    <div class="when">Issued Aug 2026</div>
+                </div>
+            </div>
+            <div class="edu-card cert">
+                <span class="cert-logo"><img class="fill" src="logos/mckinsey.png" alt=""></span>
+                <div>
+                    <h3 class="what">McKinsey Forward Program</h3>
+                    <div class="issuer">McKinsey &amp; Company</div>
+                    <div class="when">Issued Jul 2024</div>
+                </div>
+            </div>
+            <div class="edu-card cert">
+                <span class="cert-logo"><img src="logos/github.svg" alt=""></span>
+                <div>
+                    <h3 class="what">Career Essentials in GitHub</h3>
+                    <div class="issuer">GitHub</div>
+                    <div class="when">Issued Jul 2024</div>
+                </div>
+            </div>
+            <div class="edu-card cert">
+                <span class="cert-logo"><img src="logos/aws.svg" alt=""></span>
+                <div>
+                    <h3 class="what">AWS Fundamentals</h3>
+                    <div class="issuer">Amazon Web Services (AWS)</div>
+                    <div class="when">Issued Apr 2024</div>
+                </div>
+            </div>
+            <div class="edu-card cert">
+                <span class="cert-logo"><img src="logos/meta.svg" alt=""></span>
+                <div>
+                    <h3 class="what">Meta Front-End Development</h3>
+                    <div class="issuer">Meta</div>
+                    <div class="when">Issued Mar 2024</div>
+                </div>
+            </div>
+            <div class="edu-card cert">
+                <span class="cert-logo"><img src="logos/google.svg" alt=""></span>
+                <div>
+                    <h3 class="what">Google Project Management</h3>
+                    <div class="issuer">Google</div>
+                    <div class="when">Issued Feb 2024</div>
+                </div>
+            </div>
+            <div class="edu-card cert">
+                <span class="cert-logo"><img src="logos/hpi.svg" alt=""></span>
+                <div>
+                    <h3 class="what">Global Design Thinking Workshop</h3>
+                    <div class="issuer">Hasso Plattner Institute</div>
+                    <div class="when">Issued May 2023</div>
+                </div>
             </div>
         </div>
     </section>
